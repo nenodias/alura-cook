@@ -1,6 +1,6 @@
-<script>
+<script lang="ts">
     import Tag from "./Tag.svelte";
-    let ingredientes = ["Alho", "Manteiga", "Ovos"];
+    export let ingredientes: string[];
 </script>
 
 <section class="minha-lista">

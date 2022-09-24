@@ -5,6 +5,19 @@
     import Titulo from "$components/Titulo.svelte";
     import Categoria from "$components/Categoria.svelte";
     import categorias from "$lib/json/categorias.json";
+    import Tag from "$components/Tag.svelte";
+    import Rodape from "$components/Rodape.svelte";
+    let minhaLista: string[] = [];
+
+    function adicionarIngrediente(event: CustomEvent<string>) {
+        const ingrediente = event.detail;
+        minhaLista = [...minhaLista, ingrediente];
+    }
+
+    function removerIngrediente(event: CustomEvent<string>) {
+        const ingrediente = event.detail;
+        minhaLista = minhaLista.filter((item) => item !== ingrediente);
+    }
 </script>
 
 <svelte:head>
@@ -14,25 +27,46 @@
 <div class="container-principal">
     <Cabecalho />
     <div class="estilo-principal">
-        <div class="minha-lista-container">
-            <MinhaLista />
+        {#if minhaLista.length}
+            <div class="minha-lista-container">
+                <MinhaLista ingredientes={minhaLista} />
 
-            <div class="divisoria" />
-        </div>
+                <div class="divisoria" />
+            </div>
+        {/if}
         <main>
             <Titulo tag="h1">Ingredientes</Titulo>
             <div class="info">
-                <p>Selecione abaixo os ingredientes que você deseja usar nesta refeição:</p>
-                <p>*Atenção: consideramos que você tenha em casa sal, pimenta e água.</p>
+                <p>
+                    Selecione abaixo os ingredientes que você deseja usar nesta
+                    refeição:
+                </p>
+                <p>
+                    *Atenção: consideramos que você tenha em casa sal, pimenta e
+                    água.
+                </p>
             </div>
 
             <ul class="categorias">
-                {#each categorias as categoria (categoria.nome) }
-                    <li><Categoria  {categoria} /></li>
+                {#each categorias as categoria (categoria.nome)}
+                    <li>
+                        <Categoria
+                            {categoria}
+                            on:adicionarIngrediente={adicionarIngrediente}
+                            on:removerIngrediente={removerIngrediente}
+                        />
+                    </li>
                 {/each}
             </ul>
+
+            <div class="buscar-receitas">
+                <a href="/receitas">
+                    <Tag ativa tamanho="lg">Buscar Receitas</Tag>
+                </a>
+            </div>
         </main>
     </div>
+    <Rodape />
 </div>
 
 <style>
@@ -74,5 +108,10 @@
         flex-wrap: wrap;
         justify-content: center;
         gap: 1.5rem;
+    }
+
+    .buscar-receitas {
+        display: flex;
+        justify-content: center;
     }
 </style>
