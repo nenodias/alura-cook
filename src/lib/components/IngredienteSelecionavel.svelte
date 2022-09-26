@@ -9,9 +9,9 @@
         selecionado = !selecionado;
 
         if (selecionado) {
-            $minhaLista = [...$minhaLista, ingrediente];
+            minhaLista.update((valorAtual)=>[...valorAtual,ingrediente]);
         } else {
-            $minhaLista = $minhaLista.filter((item) => item !== ingrediente);
+            minhaLista.update((valorAtual)=>valorAtual.filter((item) => item !== ingrediente));
         }
     }
 </script>
