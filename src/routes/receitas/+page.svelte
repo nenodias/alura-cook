@@ -2,6 +2,14 @@
     import Receita from "$components/paginas/receitas/Receita.svelte";
     import Titulo from "$components/compartilhados/Titulo.svelte";
     import receitas from "$lib/json/receitas.json";
+    import { minhaLista } from "$lib/stores/minhaLista";
+    import type IReceita from "$lib/interfaces/IReceita";
+    let receitasFiltradas: IReceita[];
+    $: receitasFiltradas = receitas.filter((receita) =>
+        receita.ingredientes.every((ingrediente) =>
+            $minhaLista.includes(ingrediente)
+        )
+    );
 </script>
 
 <svelte:head>
@@ -11,15 +19,19 @@
 <main>
     <Titulo tag="h1">Receitas</Titulo>
     <div class="info">
-        <p class="verde">Resultados encontrados: 0</p>
-        <p>
-            Veja as opções de receitas que encontramos com os ingredientes que
-            você selecionou
-        </p>
+        <p class="verde">Resultados encontrados: {receitasFiltradas.length}</p>
+        {#if receitasFiltradas.length}
+            <p>
+                Veja as opções de receitas que encontramos com os ingredientes
+                que você selecionou
+            </p>
+        {:else}
+            <p>Não encontramos nenhuma receita com seus ingredientes :(</p>
+        {/if}
     </div>
 
     <ul class="receitas">
-        {#each receitas as receita (receita.nome) }    
+        {#each receitasFiltradas as receita (receita.nome)}
             <li>
                 <Receita {receita} />
             </li>
@@ -50,4 +62,3 @@
         gap: 1.5rem;
     }
 </style>
-

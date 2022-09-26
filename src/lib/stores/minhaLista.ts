@@ -10,5 +10,10 @@ export const minhaLista = {
     },
     removerIngrediente(ingrediente:string){
         update((valorAtual)=>valorAtual.filter((item) => item !== ingrediente));
+    },
+    get(){
+        let myList: string[] = [];
+        minhaLista.subscribe((value)=> myList = value)();
+        return myList;
     }
 }
