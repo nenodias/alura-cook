@@ -1,6 +1,7 @@
 <script lang="ts">
     import Receita from "$components/paginas/receitas/Receita.svelte";
     import Titulo from "$components/compartilhados/Titulo.svelte";
+    import receitas from "$lib/json/receitas.json";
 </script>
 
 <svelte:head>
@@ -18,9 +19,11 @@
     </div>
 
     <ul class="receitas">
-        <li>
-            <Receita />
-        </li>
+        {#each receitas as receita (receita.nome) }    
+            <li>
+                <Receita {receita} />
+            </li>
+        {/each}
     </ul>
 </main>
 
@@ -47,3 +50,4 @@
         gap: 1.5rem;
     }
 </style>
+
