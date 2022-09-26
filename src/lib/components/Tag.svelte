@@ -1,10 +1,13 @@
 <script lang="ts">
     export let ativa = false;
     export let tamanho: "md" | "lg" = "md";
+    export let desabilitada = false;
 </script>
 
 <div class="tag {tamanho}"
-    class:ativa>
+    class:ativa
+    class:desabilitada
+    >
     <slot />
 </div>
 
@@ -25,6 +28,11 @@
     .ativa{
         color: var(--branco);
         background-color: var(--laranja);
+    }
+
+    .desabilitada {
+        opacity: 0.8;
+        cursor: default;
     }
 
     .lg {
