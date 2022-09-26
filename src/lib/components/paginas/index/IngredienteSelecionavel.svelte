@@ -1,6 +1,6 @@
 <script lang="ts">
     import { minhaLista } from "$lib/stores/minhaLista";
-    import Tag from "./Tag.svelte";
+    import Tag from "$components/compartilhados/Tag.svelte";
     
     export let ingrediente: string;
     $: selecionado = $minhaLista.includes(ingrediente);

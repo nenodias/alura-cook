@@ -1,8 +1,8 @@
 <script lang="ts">
     import "./../app.css";
-    import Titulo from "$components/Titulo.svelte";
-    import Categoria from "$components/Categoria.svelte";
-    import Tag from "$components/Tag.svelte";
+    import Titulo from "$components/compartilhados/Titulo.svelte";
+    import Categoria from "$components/paginas/index/Categoria.svelte";
+    import Tag from "$components/compartilhados/Tag.svelte";
 
     import categorias from "$lib/json/categorias.json";
     import { beforeNavigate } from "$app/navigation";
@@ -10,8 +10,8 @@
     import { minhaLista } from "$lib/stores/minhaLista";
 
     $: listaVazia = $minhaLista.length === 0;
-    beforeNavigate((navigation) =>{
-        if(listaVazia && navigation.to?.routeId === "receitas"){
+    beforeNavigate((navigation) => {
+        if (listaVazia && navigation.to?.routeId === "receitas") {
             navigation.cancel();
         }
     });
@@ -29,30 +29,28 @@
             refeição:
         </p>
         <p>
-            *Atenção: consideramos que você tenha em casa sal, pimenta e
-            água.
+            *Atenção: consideramos que você tenha em casa sal, pimenta e água.
         </p>
     </div>
 
     <ul class="categorias">
         {#each categorias as categoria (categoria.nome)}
             <li>
-                <Categoria
-                    {categoria}
-                />
+                <Categoria {categoria} />
             </li>
         {/each}
     </ul>
 
     <div class="buscar-receitas">
         <a href="/receitas">
-            <Tag ativa tamanho="lg" desabilitada={listaVazia}>Buscar Receitas</Tag>
+            <Tag ativa tamanho="lg" desabilitada={listaVazia}
+                >Buscar Receitas</Tag
+            >
         </a>
     </div>
 </main>
 
 <style>
-
     .info {
         margin-bottom: 3.375rem;
     }

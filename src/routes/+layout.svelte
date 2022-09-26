@@ -1,10 +1,11 @@
 <script lang="ts">
-    import Cabecalho from "$components/Cabecalho.svelte";
-    import MinhaLista from "$components/MinhaLista.svelte";
-    import Rodape from "$components/Rodape.svelte";
-    
+    import Cabecalho from "$components/paginas/layout/Cabecalho.svelte";
+    import MinhaLista from "$components/paginas/layout/MinhaLista.svelte";
+    import Rodape from "$components/paginas/layout/Rodape.svelte";
+
     import { minhaLista } from "$lib/stores/minhaLista";
 </script>
+
 <div class="container-principal">
     <Cabecalho />
     <div class="estilo-principal">
@@ -15,7 +16,7 @@
                 <div class="divisoria" />
             </div>
         {/if}
-        <slot></slot>
+        <slot />
     </div>
     <Rodape />
 </div>
