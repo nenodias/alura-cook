@@ -9,9 +9,9 @@
         selecionado = !selecionado;
 
         if (selecionado) {
-            minhaLista.update((valorAtual)=>[...valorAtual,ingrediente]);
+            minhaLista.adicionarIngrediente(ingrediente);
         } else {
-            minhaLista.update((valorAtual)=>valorAtual.filter((item) => item !== ingrediente));
+            minhaLista.removerIngrediente(ingrediente);
         }
     }
 </script>
