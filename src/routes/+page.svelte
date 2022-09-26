@@ -1,10 +1,8 @@
 <script lang="ts">
     import "./../app.css";
-    import MinhaLista from "$components/MinhaLista.svelte";
     import Titulo from "$components/Titulo.svelte";
     import Categoria from "$components/Categoria.svelte";
     import Tag from "$components/Tag.svelte";
-    import { minhaLista } from "$lib/stores/minhaLista";
 
     import categorias from "$lib/json/categorias.json";
 </script>
@@ -13,13 +11,6 @@
     <title>Alura Cook</title>
 </svelte:head>
 
-{#if $minhaLista.length}
-    <div class="minha-lista-container">
-        <MinhaLista />
-
-        <div class="divisoria" />
-    </div>
-{/if}
 <main>
     <Titulo tag="h1">Ingredientes</Titulo>
     <div class="info">
@@ -51,17 +42,6 @@
 </main>
 
 <style>
-
-    .minha-lista-container {
-        margin-bottom: 2rem;
-    }
-
-    .divisoria {
-        width: 40vw;
-        height: 2px;
-        background-color: var(--verde);
-        margin: 0 auto;
-    }
 
     .info {
         margin-bottom: 3.375rem;

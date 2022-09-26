@@ -1,9 +1,9 @@
 <script lang="ts">
     import { minhaLista } from "$lib/stores/minhaLista";
     import Tag from "./Tag.svelte";
-
-    let selecionado: boolean = false;
+    
     export let ingrediente: string;
+    let selecionado: boolean = $minhaLista.includes(ingrediente);
 
     function aoClicar() {
         selecionado = !selecionado;
