@@ -20,6 +20,7 @@
         color: var(--cor-texto-principal);
         background-color: var(--cinza);
 
+        transition: 0.2s;
         display: flex;
         justify-content: center;
         align-items: center;
