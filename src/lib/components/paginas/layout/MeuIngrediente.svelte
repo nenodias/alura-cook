@@ -4,16 +4,12 @@
     import Tag from "$components/compartilhados/Tag.svelte";
     export let ingrediente: string;
 
-    function removerIngrediente(){
+    function removerIngrediente() {
         minhaLista.removerIngrediente(ingrediente);
     }
 </script>
 
-<div 
-    class="meu-ingrediente-container"
-    in:fade
-    out:fade
->
+<div class="meu-ingrediente-container" transition:fade={{ duration: 200 }}>
     <button class="close" on:click={removerIngrediente} />
     <Tag ativa>{ingrediente}</Tag>
 
