@@ -4,6 +4,7 @@
     import receitas from "$lib/json/receitas.json";
     import { minhaLista } from "$lib/stores/minhaLista";
     import type IReceita from "$lib/interfaces/IReceita";
+    import TagLink from "$components/compartilhados/TagLink.svelte";
     let receitasFiltradas: IReceita[];
     $: receitasFiltradas = receitas.filter((receita) =>
         receita.ingredientes.every((ingrediente) =>
@@ -29,14 +30,19 @@
             <p>Não encontramos nenhuma receita com seus ingredientes :(</p>
         {/if}
     </div>
+    {#if receitasFiltradas.length}
+        <ul class="receitas">
+            {#each receitasFiltradas as receita (receita.nome)}
+                <li>
+                    <Receita {receita} />
+                </li>
+            {/each}
+        </ul>
+    {/if}
 
-    <ul class="receitas">
-        {#each receitasFiltradas as receita (receita.nome)}
-            <li>
-                <Receita {receita} />
-            </li>
-        {/each}
-    </ul>
+    <div class="editar-lista">
+        <TagLink href="/">Editar lista</TagLink>
+    </div>
 </main>
 
 <style>
@@ -60,5 +66,10 @@
         flex-wrap: wrap;
         justify-content: center;
         gap: 1.5rem;
+    }
+
+    .editar-lista {
+        display: flex;
+        justify-content: center;
     }
 </style>
