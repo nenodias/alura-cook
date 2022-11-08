@@ -16,4 +16,8 @@
         justify-content: center;
         align-items: center;
     }
+
+    header img {
+        height: inherit;
+    }
 </style>
